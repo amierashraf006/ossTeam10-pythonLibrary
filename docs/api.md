@@ -1,3 +1,3 @@
 # API
 
-::: ossimg.core
+::: receiptsort.core
