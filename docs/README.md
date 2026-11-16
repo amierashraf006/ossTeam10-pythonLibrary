@@ -18,10 +18,34 @@ Small business owners, accountants, and personal finance managers often spend ho
     - Amier Ashraf (@amierashraf006)
     - Farina Nadia (@farinanadiaa)
     - Iman Insyirah (@imaninsyirahsohaimi)
-    - Yan Xiyang (heptapoda)
-    - Kim Hyeong-Su (khs16728)
+    - Yan Xiyang (@heptapoda)
+    - Kim Hyeong-Su (@khs16728)
       
-- Team Rules: See docs/team-rules.md
-- AI Usage: AI assistance is utilized for drafting code structures, documentation formatting, and debugging under course guidelines.
+- Team Rules: 
+    - Pull request size:
+        - One small function(about 100 changed lines)
+    - Review process:
+        - Reviewer: Everyone aside from author(minimum 2 people)
+        - Time limit: within 48 hours after PR
+        - What blocks a merge:
+          - At least 1 "Request Change" from reviewer Unresolved conversations in the PR comments
+
+    - Merge:
+        - Who presses the button: Team leader
+        - Merge Option: Merge Commit (Default)
+        - Post-Merge Action: Delete the branch immediately after a successful merge
+          
+    - Conventions & Communication:
+        - Branch Naming: feature/feature-name (e.g., feature/login, feature/ai-integration)
+        - Commit Message Format: Conventional Commits style
+            - feat: ... (adding a feature or functionality)
+            - fix: ... (Fixing a bug or error)
+            - docs: ... (Updating documentation only)
+            - style: ... (Formatting, missing semicolons, or code style changes (no logic change))
+            - refactor: ... (Restructuring code without adding a feature or fixing a bug)
+            - test: ... (Adding or updating tests) chore: ... (Maintenance tasks, dependency upgrades, or build config updates)
+         
+- AI usage: Use the disclosure rule from this course
+  - AI Usage: AI assistance is utilized for drafting code structures, documentation formatting, and debugging under course guidelines.
 ## 9. License         
 - MIT License. See LICENSE for details.
