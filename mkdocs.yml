@@ -5,7 +5,7 @@ theme:
 nav:
   - Home: index.md
   - Proposal: proposal.md
-  - Team rules: team-rules.md
+  - Team rules: team-rule.md
   - API: api.md
 plugins:
   - search
