@@ -10,6 +10,28 @@ Small business owners, accountants, and personal finance managers often spend ho
 ## 2. Installation        <- TestPyPI command today, pip install <name> later
 ## 3. Quick start         <- five lines, input file to result
 ## 4. Dependencies        <- your import list, with licenses
+
+1. Pandas
+License: BSD 3-Clause 
+
+2. Openpyxl
+License: MIT
+
+3. RapidFuzz
+License: MIT
+
+4. matplotlib
+License: PSF based
+
+5. pyteserract
+License: Apache 2.0
+
+6. Teserract OCR
+License: Apache 2.0
+
+7. StreamLit
+License: Apache 2.0
+
 ## 5. Tests               <- TODO (later in this course)
 ## 6. Documentation       <- MkDocs site, API page link
 ## 7. Release             <- TODO (later in this course)
