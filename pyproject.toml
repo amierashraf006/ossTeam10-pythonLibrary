@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "receiptsort"
+version = "0.1.0"
+description = "classifiy transaction input into respective categories"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Team 10" }]
+dependencies = ["Pillow>=10", "numpy>=1.26"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/amierashraf006/ossTeam10-pythonLibrary"
+Documentation = "https://amierashraf006.github.io/ossTeam10-pythonLibrary/"
+Issues = "https://github.com/amierashraf006/ossTeam10-pythonLibrary/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/receiptsort"]
