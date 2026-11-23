@@ -54,3 +54,6 @@ def grayscale(path, out):
         'clock_gray.png'
     """
     raise NotImplementedError
+
+def add(num1, num2):
+    raise NotImplementedError
