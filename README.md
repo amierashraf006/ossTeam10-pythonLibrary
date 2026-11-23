@@ -46,7 +46,8 @@ License: Apache 2.0
 License: Apache 2.0
 
 ## 5. Tests               <- TODO (later in this course)
-
+python -m pip install -e . pytest
+python -m pytest
 ## 6. Documentation       <- MkDocs site, API page link
 - The project documentation is available on our MkDocs website.
 - MkDocssite: https://amierashraf006.github.io/ossTeam10-pythonLibrary
