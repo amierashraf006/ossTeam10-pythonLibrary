@@ -1,56 +1,100 @@
-"""Core functions of ossimg. (examples for documentation)"""
+"""Core functions for receiptsort financial document extraction."""
+
+from pathlib import Path
+from typing import List, Literal
+from pydantic import BaseModel, Field
 
 
-def resize(path, width):
-    """Resize an image to the given width, keeping its aspect ratio.
+class FinancialDocument(BaseModel):
+    """Structured schema representing a single extracted financial transaction."""
+
+    Date: str = Field(description="Transaction date in YYYY-MM-DD format.")
+    Time: str = Field(description="Transaction time in HH:MM format, or '--:--'.")
+    Receipt_Number: str = Field(description="Receipt, invoice, or reference number.")
+    Type: Literal[
+        "Cash Bill", "Receipt", "Cheque Stub", "Payment Voucher",
+        "Petty Cash Voucher", "Cash Register Slip", "Bank Slip",
+        "Money Transfer Slip", "Electronic Banking Slip", "Online Transaction",
+        "Debit Advice", "Credit Advice", "Memorandum", "Invoice",
+        "Debit Note", "Credit Note", "Utility Bill", "Customer Folio", "Other"
+    ]
+    Vendor: str = Field(description="Merchant, bank, or issuer name.")
+    Category: Literal[
+        "Transportation", "Food & Dining", "Utilities", "Office & Supplies",
+        "IT & Hardware", "Banking & Finance", "Accommodation", "Other"
+    ]
+    Sub_Category: str = Field(description="Specific expense sub-category.")
+    Subtotal: float = Field(description="Amount before tax.")
+    Tax: float = Field(description="Total tax amount.")
+    Total_Amount: float = Field(description="Grand total amount.")
+    Currency: str = Field(description="3-letter ISO currency code.")
+    Payment_Method: str = Field(description="Payment method used.")
+    AI_Inferred: Literal["Yes", "No"] = Field(description="'Yes' if category was inferred.")
+
+
+class DocumentBatch(BaseModel):
+    """Batch container holding multiple extracted financial documents."""
+
+    items: List[FinancialDocument]
+
+
+def extract_zip(zip_path: str | Path, extract_dir: str | Path) -> List[Path]:
+    """Extract supported financial document files from a ZIP archive.
 
     Args:
-        path (str): Path to the input image file.
-        width (int): Target width in pixels. Must be positive.
+        zip_path (str | Path): Path to the input .zip file.
+        extract_dir (str | Path): Directory where extracted files will be saved.
 
     Returns:
-        PIL.Image.Image: The resized image. The height is computed
-        from the original aspect ratio.
+        List[Path]: List of paths to valid extracted document files.
 
     Raises:
-        ValueError: If ``width`` is not a positive integer.
+        FileNotFoundError: If ``zip_path`` does not exist.
 
     Examples:
-        >>> resize("examples/clock.png", 200).size
-        (200, 100)
+        >>> files = extract_zip("samples.zip", "temp_docs")
+        >>> isinstance(files, list)
+        True
     """
     raise NotImplementedError
 
 
-def crop(path, box):
-    """Crop an image to a rectangle.
+def parse_document(file_path: str | Path) -> List[dict]:
+    """Extract and categorize financial transactions from a single file using Gemini.
 
     Args:
-        path (str): Path to the input image file.
-        box (tuple[int, int, int, int]): (left, top, right, bottom) in pixels.
+        file_path (str | Path): Path to an image, PDF, CSV, or Excel file.
 
     Returns:
-        PIL.Image.Image: The cropped image.
+        List[dict]: Extracted transaction records matching ``FinancialDocument``.
+
+    Raises:
+        ValueError: If the file extension is not supported.
 
     Examples:
-        >>> crop("examples/clock.png", (0, 0, 100, 100)).size
-        (100, 100)
+        >>> records = parse_document("receipt.jpg")
+        >>> "Total_Amount" in records[0]
+        True
     """
     raise NotImplementedError
 
 
-def grayscale(path, out):
-    """Save a grayscale copy of an image. The original file is not changed.
+def export_to_excel(records: List[dict], output_path: str | Path) -> Path:
+    """Save extracted financial records into a formatted master Excel file.
 
     Args:
-        path (str): Path to the input image file.
-        out (str): Path of the new grayscale file. Must differ from ``path``.
+        records (List[dict]): List of transaction dictionaries to export.
+        output_path (str | Path): Destination path for the output .xlsx file.
 
     Returns:
-        str: The path of the file that was written.
+        Path: Path to the newly generated Excel spreadsheet.
+
+    Raises:
+        ValueError: If ``records`` is empty.
 
     Examples:
-        >>> grayscale("examples/clock.png", "clock_gray.png")
-        'clock_gray.png'
+        >>> out = export_to_excel([{"Vendor": "Grab", "Total_Amount": 15.0}], "out.xlsx")
+        >>> out.name
+        'out.xlsx'
     """
     raise NotImplementedError
